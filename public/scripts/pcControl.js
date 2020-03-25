@@ -24,18 +24,21 @@ function mouseUpEvent() {
 /************ События и функции для пуль ************/
 let bulTimer;
 function createBullet() {
-
     let bullet = document.createElement("div");
     bullet.setAttribute("id", "bullet");
 
     let bulletStyles = window.getComputedStyle(bullet);
-    let matrix = new WebKitCSSMatrix(bulletStyles.webkitTransform);
+    let matrix = new WebKitCSSMatrix(playerStyles.webkitTransform);
+    let bulletY = 435;
+    matrix.e += 43;
+    bullet.style.transform = "translate(" + matrix.e  + "px," + bulletY +"px)";
     gameField.append(bullet);
-    bullet.style.transform = "translateX(" + matrix.m41 + "px)";
-    
-
-    
 }
+
+function fire(){
+    return 100;
+}
+
 
 function setBulletInterval() {
     bulTimer = setInterval(createBullet, 500);
@@ -78,4 +81,3 @@ addEventListener("mouseup", mouseUpEvent);
 
 addEventListener("mousedown", setBulletInterval);
 addEventListener("mouseup", removeBulletInterval);
-
